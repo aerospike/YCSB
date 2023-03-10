@@ -16,9 +16,9 @@ LICENSE file.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.yahoo.ycsb</groupId>
+    <groupId>site.ycsb</groupId>
     <artifactId>binding-parent</artifactId>
-    <version>0.13.0-SNAPSHOT</version>
+    <version>0.17.0</version>
     <relativePath>../binding-parent/</relativePath>
   </parent>
 
@@ -26,8 +26,9 @@ LICENSE file.
   <name>AsyncHBase Client Binding for Apache HBase</name>
 
   <properties>
-    <!-- Tests do not run on jdk9 -->
     <skipJDK9Tests>true</skipJDK9Tests>
+    <skipJDK10Tests>true</skipJDK10Tests>
+    <skipJDK11Tests>true</skipJDK11Tests>
   </properties>
 
   <dependencies>
@@ -38,7 +39,7 @@ LICENSE file.
     </dependency>
     
     <dependency>
-      <groupId>com.yahoo.ycsb</groupId>
+      <groupId>site.ycsb</groupId>
       <artifactId>core</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
@@ -119,4 +120,17 @@ LICENSE file.
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.20</version>
+        <configuration>
+          <argLine>-Xms4096m -Xms4096m</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

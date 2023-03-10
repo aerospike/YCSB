@@ -17,7 +17,6 @@ LICENSE file.
 
 # HBase (0.98.x) Driver for YCSB
 This driver is a binding for the YCSB facilities to operate against a HBase 0.98.x Server cluster.
-To run against an HBase 0.94.x cluster, use the `hbase094` binding.
 To run against an HBase >= 1.0 cluster, use the `hbase10` binding.
 
 ## Quickstart
@@ -77,6 +76,7 @@ Following options can be configurable using `-p`.
 * `principal`: If testing need to be done against a secure HBase cluster using Kerberos Keytab, 
   this property can be used to pass the principal in the keytab file.
 * `keytab`: The Kerberos keytab file name and location can be passed through this property.
-* `writebuffersize`: The maximum amount, in bytes, of data to buffer on the client side before a flush is forced. The default is 12MB.
+* `clientbuffering`: Whether or not to use client side buffering and batching of write operations. This can significantly improve performance and defaults to true.
+* `writebuffersize`: The maximum amount, in bytes, of data to buffer on the client side before a flush is forced. The default is 12MB. Only used when `clientbuffering` is true.
 
 Additional HBase settings should be provided in the `hbase-site.xml` file located in your `/HBASE-HOME-DIR/conf` directory. Typically this will be `/etc/hbase/conf`.

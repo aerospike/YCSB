@@ -21,9 +21,9 @@ LICENSE file.
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.yahoo.ycsb</groupId>
+    <groupId>site.ycsb</groupId>
     <artifactId>binding-parent</artifactId>
-    <version>0.13.0-SNAPSHOT</version>
+    <version>0.17.0</version>
     <relativePath>../binding-parent</relativePath>
   </parent>
 
@@ -32,13 +32,14 @@ LICENSE file.
   <packaging>jar</packaging>
 
   <properties>
-    <!-- Skip tests by default. will be activated by jdk8 profile -->
-    <skipTests>true</skipTests>
+    <skipJDK9Tests>true</skipJDK9Tests>
+    <skipJDK10Tests>true</skipJDK10Tests>
+    <skipJDK11Tests>true</skipJDK11Tests>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>com.yahoo.ycsb</groupId>
+      <groupId>site.ycsb</groupId>
       <artifactId>core</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
@@ -47,6 +48,12 @@ LICENSE file.
       <groupId>org.apache.solr</groupId>
       <artifactId>solr-solrj</artifactId>
       <version>${solr6.version}</version>
+    </dependency>
+    <!-- commons-codec required for Solr Kerberos support -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.10</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -59,6 +66,12 @@ LICENSE file.
       <artifactId>solr-test-framework</artifactId>
       <version>${solr6.version}</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>jdk.tools</groupId>
+          <artifactId>jdk.tools</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 

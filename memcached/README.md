@@ -39,7 +39,7 @@ Git clone YCSB and compile:
 
     git clone http://github.com/brianfrankcooper/YCSB.git
     cd YCSB
-    mvn -pl com.yahoo.ycsb:memcached-binding -am clean package
+    mvn -pl site.ycsb:memcached-binding -am clean package
 
 ## 4. Load data and run tests
 
@@ -90,6 +90,10 @@ A sample configuration is provided in
 
   What to do with failures; this is one of `net.spy.memcached.FailureMode` enum
   values, which are currently: `Redistribute`, `Retry`, or `Cancel`.
+
+- `memcached.protocol`
+  Set to 'binary' to use memcached binary protocol. Set to 'text' or omit this field
+  to use memcached text protocol
 
 You can set properties on the command line via `-p`, e.g.:
 

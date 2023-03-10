@@ -29,16 +29,19 @@ Git clone YCSB and compile:
 
     git clone http://github.com/brianfrankcooper/YCSB.git
     cd YCSB
-    mvn -pl com.yahoo.ycsb:redis-binding -am clean package
+    mvn -pl site.ycsb:redis-binding -am clean package
 
 ### 4. Provide Redis Connection Parameters
     
-Set the host, port, and password (do not redis auth is not turned on) in the 
-workload you plan to run.
+Set host, port, password, and cluster mode in the workload you plan to run. 
 
 - `redis.host`
 - `redis.port`
 - `redis.password`
+  * Don't set the password if redis auth is disabled.
+- `redis.cluster`
+  * Set the cluster parameter to `true` if redis cluster mode is enabled.
+  * Default is `false`.
 
 Or, you can set configs with the shell command, EG:
 
